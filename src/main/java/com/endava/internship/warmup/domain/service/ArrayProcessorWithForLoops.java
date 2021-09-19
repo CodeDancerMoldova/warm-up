@@ -61,12 +61,12 @@ public class ArrayProcessorWithForLoops implements ArrayProcessor {
      */
     @Override
     public int[] copyValues(int[] input, int startInclusive, int endExclusive) throws IllegalArgumentException {
-        if(startInclusive<0 || startInclusive>endExclusive){
+        if (startInclusive < 0 || startInclusive > endExclusive) {
             throw new IllegalArgumentException("copy value out of bounds");
         }
-        int []arr = new int[endExclusive - startInclusive];
-        int j=0;
-        for(int i = startInclusive;i<endExclusive;i++){
+        int[] arr = new int[endExclusive - startInclusive];
+        int j = 0;
+        for (int i = startInclusive; i < endExclusive; i++) {
             arr[j] = input[i];
             j++;
         }
@@ -80,12 +80,11 @@ public class ArrayProcessorWithForLoops implements ArrayProcessor {
      */
     @Override
     public int[] replace(final int[] input) {
-        int [] arr = new int[input.length];
-        for(int i=0;i<input.length;i++){
-            if(input[i]%2==0){
-                arr[i] = input[i]*2;
-            }
-            else if (input[i]%2!=0){
+        int[] arr = new int[input.length];
+        for (int i = 0; i < input.length; i++) {
+            if (input[i] % 2 == 0) {
+                arr[i] = input[i] * 2;
+            } else if (input[i] % 2 != 0) {
                 arr[i] = -input[i];
             }
         }
@@ -194,13 +193,13 @@ public class ArrayProcessorWithForLoops implements ArrayProcessor {
     @Override
     public int[] insertValues(final int[] input, int startInclusive, int[] values) throws IllegalArgumentException {
 
-        if(startInclusive < 0){
+        if (startInclusive < 0) {
             throw new IllegalArgumentException("start inclusive negative");
         }
-        int insArray [] = new int[input.length + values.length];
-        int r=0;
-        int vi=0;
-        for(int j = 0 ; j < startInclusive ; j++){
+        int insArray[] = new int[input.length + values.length];
+        int r = 0;
+        int vi = 0;
+        for (int j = 0; j < startInclusive; j++) {
             insArray[j] = input[j];
             r++;
 
@@ -211,8 +210,8 @@ public class ArrayProcessorWithForLoops implements ArrayProcessor {
 
             r++;
         }
-        for(int k = startInclusive ; k < input.length ; k++){
-            insArray[r] =  input[k];
+        for (int k = startInclusive; k < input.length; k++) {
+            insArray[r] = input[k];
             r++;
         }
 
@@ -262,11 +261,9 @@ public class ArrayProcessorWithForLoops implements ArrayProcessor {
      */
     @Override
     public void validateForMatrixMultiplication(int[][] leftMatrix, int[][] rightMatrix) throws NullPointerException, IllegalArgumentException {
-        try{
-            matrixMultiplication(leftMatrix,rightMatrix);
-        }
-        catch(ArrayIndexOutOfBoundsException illegalArgumentException)
-        {
+        try {
+            matrixMultiplication(leftMatrix, rightMatrix);
+        } catch (ArrayIndexOutOfBoundsException illegalArgumentException) {
             throw new IllegalArgumentException("arr dim");
         }
     }
@@ -281,18 +278,17 @@ public class ArrayProcessorWithForLoops implements ArrayProcessor {
      */
     @Override
     public int[][] matrixMultiplication(final int[][] leftMatrix, final int[][] rightMatrix) throws NullPointerException, IllegalArgumentException {
-        int [][] mult = new int[leftMatrix.length][rightMatrix[0].length];
-        if(leftMatrix == null && rightMatrix == null)
-        {
+        int[][] mult = new int[leftMatrix.length][rightMatrix[0].length];
+        if (leftMatrix == null && rightMatrix == null) {
             throw new IllegalArgumentException("gggg");
         }
-        if(leftMatrix.length != rightMatrix[0].length){
+        if (leftMatrix.length != rightMatrix[0].length) {
             throw new IllegalArgumentException("not equal statement");
         }
-        for(int i=0;i<leftMatrix.length;i++){
-            for(int j = 0;j<rightMatrix[0].length;j++){
-                for(int k=0;k< leftMatrix[0].length;k++){
-                    mult[i][j] +=leftMatrix[i][k] * rightMatrix[k][j];
+        for (int i = 0; i < leftMatrix.length; i++) {
+            for (int j = 0; j < rightMatrix[0].length; j++) {
+                for (int k = 0; k < leftMatrix[0].length; k++) {
+                    mult[i][j] += leftMatrix[i][k] * rightMatrix[k][j];
                 }
             }
         }
